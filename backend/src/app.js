@@ -4,6 +4,9 @@ const express = require('express');
 //Importando o cors
 const cors = require('cors');
 
+//Importando erros do celebrate
+const { errors } = require('celebrate');
+
 //Importando as rotas
 const routes = require('./routes');
 
@@ -14,6 +17,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(routes);
+app.use(errors());
 //Rota raiz do node '/', ex: rota contato index/contato
 //Rota é o recurso completo localhost:3333/users, recurso é somente o /users, geralmente está associado a alguma tabela no BD.
 
@@ -41,7 +45,7 @@ Query Builder: table('users').select('*').where()
 */
 
 //Escolhendo a porta 3333 para acessar a aplicação
-app.listen(3333);
+module.exports = app;
 
 
 
